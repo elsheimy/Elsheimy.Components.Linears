@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1C92E46-5FFD-4DD4-86B7-64545BBFF904}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Elsheimy.Components.Linears</RootNamespace>
+    <AssemblyName>Elsheimy.Components.Linears</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AngleUnit.cs" />
+    <Compile Include="Converters.cs" />
+    <Compile Include="MatrixFunctions\Helpers\MatrixEliminationResult.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Extraction.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Reflection.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Mirror.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Shearing.cs" />
+    <Compile Include="MatrixHelpers\Matrix3DReflectionPlane.cs" />
+    <Compile Include="MatrixHelpers\MatrixRotationDirection.cs" />
+    <Compile Include="MatrixHelpers\MatrixSolutionState.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.AdditionSubtraction.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Concatenation.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Determinant.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Elimination.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Helpers.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Inverse.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Multiplication.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Other.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Projection.cs" />
+    <Compile Include="MatrixFunctions\MatrixFunctions.Rotation.cs" />
+    <Compile Include="MatrixHelpers\MatrixRotationAxis.cs" />
+    <Compile Include="MatrixHelpers\MatrixDirection.cs" />
+    <Compile Include="MatrixHelpers\MatrixReductionForm.cs" />
+    <Compile Include="MatrixHelpers\MatrixPosition.cs" />
+    <Compile Include="Matrix\Matrix.Extraction.cs" />
+    <Compile Include="Matrix\Matrix.Equality.cs" />
+    <Compile Include="Matrix\Matrix.Initializers.cs" />
+    <Compile Include="Matrix\Matrix.Operators.cs" />
+    <Compile Include="Matrix\Matrix.AdditionSubtraction.cs" />
+    <Compile Include="Matrix\Matrix.Cloning.cs" />
+    <Compile Include="Matrix\Matrix.Concatenation.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
+    <Compile Include="Matrix\Matrix.Elimination.cs" />
+    <Compile Include="Matrix\Matrix.Inverses.cs" />
+    <Compile Include="Matrix\Matrix.Multiplication.cs" />
+    <Compile Include="Matrix\Matrix.Other.cs" />
+    <Compile Include="Matrix\Matrix.Projection.cs" />
+    <Compile Include="Matrix\Matrix.Rotation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="VectorFunctions\VectorFunctions.AdditionSubtraction.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Cloning.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Angels.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Normalization.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Other.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Product.cs" />
+    <Compile Include="VectorFunctions\VectorFunctions.Projection.cs" />
+    <Compile Include="Vector\Vector.AdditionsSubtraction.cs" />
+    <Compile Include="Vector\Vector.Initializers.cs" />
+    <Compile Include="Vector\Vector.Operators.cs" />
+    <Compile Include="Vector\Vector.Other.cs" />
+    <Compile Include="Vector\Vector.Conversion.cs" />
+    <Compile Include="Vector\Vector.Projection.cs" />
+    <Compile Include="Vector\Vector.Product.cs" />
+    <Compile Include="Vector\Vector.Normalization.cs" />
+    <Compile Include="Vector\Vector.Cloning.cs" />
+    <Compile Include="Vector\Vector.Angels.cs" />
+    <Compile Include="Vector\Vector.Equality.cs" />
+    <Compile Include="Vector\Vector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
