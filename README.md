@@ -2,7 +2,7 @@
 
 This is my implementation of the basic linear algebra problems. It covers:
 
-(Matrices):
+## Matrices:
 * Matrix addition / subtraction.
 * Matrix concatenation / shrinking / extraction.
 * Matrix reduction and elimination (Gauss and Gauss-Jordan).
@@ -19,7 +19,7 @@ This is my implementation of the basic linear algebra problems. It covers:
 * 2D and 3D shearing matrices.
 * Cloning and equality comparers.
 
-(Vectors):
+## Vectors:
 * Vector addition / subtraction.
 * Angel between vectors.
 * Vector normalization and magnitude calculator.
