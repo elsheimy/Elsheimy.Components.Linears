@@ -4,7 +4,7 @@ using System.Linq;
 namespace Elsheimy.Components.Linears {
   internal static partial class MatrixFunctions {
     /// <summary>
-    /// Calculates determinant. Internally uses Laprace Expansion method.
+    /// Calculates determinant. Internally uses Laplace Expansion method.
     /// </summary>
     /// <remarks>
     /// Returns 1 for an empty matrix. See https://math.stackexchange.com/questions/1762537/what-is-the-determinant-of/1762542
