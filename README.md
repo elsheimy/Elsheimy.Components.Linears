@@ -6,7 +6,7 @@ This is my implementation of the basic linear algebra problems. It covers:
 * Matrix addition / subtraction.
 * Matrix concatenation / shrinking / extraction.
 * Matrix reduction and elimination (Gauss and Gauss-Jordan).
-* Determinant calculation using Laprace Expansion method.
+* Determinant calculation using Laplace Expansion method.
 * Invertibility and inverses.
 * Matrix mirrors.
 * Matrix multiplication and powers.
