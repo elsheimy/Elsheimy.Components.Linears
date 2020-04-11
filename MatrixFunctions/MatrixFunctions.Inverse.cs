@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Elsheimy.Components.Linears {
   internal static partial class MatrixFunctions {
@@ -31,7 +31,7 @@ namespace Elsheimy.Components.Linears {
       if (result.Rank != colCount)
         return null;
 
-      return result.Solution;
+      return result.AugmentedColumns;
     }
   }
 
