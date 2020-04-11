@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 
 namespace Elsheimy.Components.Linears {
   internal static partial class MatrixFunctions {
@@ -9,24 +10,50 @@ namespace Elsheimy.Components.Linears {
       return Eliminate(input, form, 0).FullMatrix;
     }
 
-    /// <summary>
-    /// Returns the state of a solved matrix.
-    /// </summary>
-    public static MatrixSolutionState GetSolutionState(double[,] input, int augmentedCols) {
-      var rowCount = input.GetLength(0);
-      var totalCols = input.GetLength(1);
 
-      for (int row = 0; row < rowCount; row++) {
-        var sumRow = MatrixFunctions.RowSum(input, row, 0, totalCols - augmentedCols - 1);
-        var sumAug = MatrixFunctions.RowSum(input, row, totalCols - augmentedCols, totalCols - 1);
+    private static MatrixEliminationResult FindSolution(MatrixEliminationResult result) {
 
-        if (sumRow + sumAug == 0)
-          return MatrixSolutionState.Infinite;
-        else if (sumRow == 0)
-          return MatrixSolutionState.None;
+      double?[] solution = null;
+      MatrixSolutionState solutionState = MatrixSolutionState.None;
+
+
+      if (result.AugmentedColumnCount == 1) {
+        if (result.UnknownsCount > result.TotalRowCount)
+          solutionState = MatrixSolutionState.Infinite;
+        else
+          solutionState = MatrixSolutionState.Unique; // default value
+
+        solution = new double?[result.UnknownsCount];
+
+        int pivotRow = 0;
+        for (int col = 0; col < result.UnknownsCount; col++) {
+          double unknownValue = result.FullMatrix[pivotRow, col];
+          double solutionValue = result.FullMatrix[pivotRow, result.TotalColumnCount - 1];
+
+          if (unknownValue == 1) {
+            solution[col] = solutionValue;
+
+            pivotRow++;
+          } else {
+            if (solutionState == MatrixSolutionState.Unique) { // still on default value
+              if (solutionValue == 0)
+                solutionState = MatrixSolutionState.Infinite;
+              else
+                solutionState = MatrixSolutionState.None;
+            }
+          }
+        }
       }
 
-      return MatrixSolutionState.Unique;
+      if (solution != null)
+        result.Rank = solution.Where(s => s != null).Count();
+      else
+        result.Rank = result.TotalColumnCount - result.AugmentedColumnCount;
+
+      result.Solution = solution;
+      result.SolutionState = solutionState;
+
+      return result;
     }
 
     /// <summary>
@@ -44,7 +71,8 @@ namespace Elsheimy.Components.Linears {
       int totalColCount = input.GetLength(1);
 
       if (augmentedCols >= totalColCount)
-        throw new ArgumentException(nameof(augmentedCols), Properties.Resources.Exception_TooMuchAugmentedColumns);
+        throw new ArgumentException(nameof(augmentedCols),
+          Properties.Resources.Exception_TooMuchAugmentedColumns);
 
       MatrixEliminationResult result = new MatrixEliminationResult();
 
@@ -79,31 +107,28 @@ namespace Elsheimy.Components.Linears {
 
       }
 
-      result.Rank = numPivots;
       result.FullMatrix = output;
+      result.UnknownsCount = totalColCount - result.AugmentedColumnCount;
+      result.TotalRowCount = totalRowCount;
+      result.TotalColumnCount = totalColCount;
       result.AugmentedColumnCount = augmentedCols;
+
+      result.AugmentedColumns = ExtractColumns(output, result.UnknownsCount, totalColCount - 1);
       if (augmentedCols > 0 && form == MatrixReductionForm.ReducedRowEchelonForm) { // matrix has solution 
-        result.Solution = ExtractColumns(output, totalColCount - augmentedCols, totalColCount - 1);
+        result = FindSolution(result);
       }
 
       return result;
     }
 
 
-
-
-    private static void EliminateRow(double[,] input, int row, int pivotRow, int pivotCol, int colCount) {
-      if (pivotRow == row)
-        return;
-
-      if (input[row, pivotCol] == 0)
-        return;
-
-      double coeffecient = input[row, pivotCol];
-
-      for (int col = pivotCol; col < colCount; col++) {
-        input[row, col] -= input[pivotRow, col] * coeffecient;
+    private static int? FindPivot(double[,] input, int startRow, int col, int rowCount) {
+      for (int i = startRow; i < rowCount; i++) {
+        if (input[i, col] != 0)
+          return i;
       }
+
+      return null;
     }
 
     private static void SwitchRows(double[,] input, int row1, int row2, int colCount) {
@@ -127,13 +152,21 @@ namespace Elsheimy.Components.Linears {
         input[row, col] *= coeffecient;
     }
 
-    private static int? FindPivot(double[,] input, int startRow, int col, int rowCount) {
-      for (int i = startRow; i < rowCount; i++) {
-        if (input[i, col] != 0)
-          return i;
-      }
+    /// <summary>
+    /// Eliminates row using another pivot row.
+    /// </summary>
+    private static void EliminateRow(double[,] input, int row, int pivotRow, int pivotCol, int colCount) {
+      if (pivotRow == row)
+        return;
 
-      return null;
+      if (input[row, pivotCol] == 0)
+        return;
+
+      double coeffecient = input[row, pivotCol];
+
+      for (int col = pivotCol; col < colCount; col++) {
+        input[row, col] -= input[pivotRow, col] * coeffecient;
+      }
     }
   }
 
