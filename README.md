@@ -1,8 +1,11 @@
+
 # Elsheimy.Components.Linears
 
-This is my implementation of the basic linear algebra problems. It covers:
+This is my implementation of the basic linear algebra problems in C#. Please feel free to relay your comments, suggestions or corrections.
 
-## Matrices:
+This component covers:
+
+## Matrices
 * Matrix addition / subtraction.
 * Matrix concatenation / shrinking / extraction.
 * Matrix reduction and elimination (Gauss and Gauss-Jordan).
@@ -19,7 +22,7 @@ This is my implementation of the basic linear algebra problems. It covers:
 * 2D and 3D shearing matrices.
 * Cloning and equality comparers.
 
-## Vectors:
+## Vectors
 * Vector addition / subtraction.
 * Angel between vectors.
 * Vector normalization and magnitude calculator.
@@ -29,4 +32,6 @@ This is my implementation of the basic linear algebra problems. It covers:
 
 I have created raw functions that operate on Array objects and wrapped those functions inside two class objects Matrix and Vector. I have overrided some operators to make it easier for users to perform various operations.
 
-Please feel free to relay your comments, suggestions or corrections.
+## NuGet Package
+This component is also available as a NuGet package on the following link:
+[https://www.nuget.org/packages/Elsheimy.Components.Linears/](https://www.nuget.org/packages/Elsheimy.Components.Linears/)
